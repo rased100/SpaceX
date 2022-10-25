@@ -7,12 +7,14 @@ import {
   Route,
   useRoutes,
 } from "react-router-dom";
+import Item from './Pages/Home/Item';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/item/:itemId" element={<Item />} />
       </Routes>
     </div>
   );
