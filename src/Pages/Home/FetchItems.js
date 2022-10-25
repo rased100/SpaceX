@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setItems } from '../../features/redux/actions/itemActions';
 import ItemsComponent from './ItemsComponent';
 
 const FetchItems = () => {
@@ -13,6 +14,7 @@ const FetchItems = () => {
         fetch(`https://api.spacexdata.com/v3/launches`)
             .then(res => res.json())
             .then(data => {
+                dispatch(setItems(data))
                 console.log('data', data)
             })
     }, [])

@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 
 const ItemsComponent = () => {
     const items = useSelector((state) => state.allItems.items);
-    console.log(items);
-    const { title } = items[0];
+    // console.log(items);
+    // const { title } = items[0];
     return (
         <div>
-            <h2>ItemsComponent1 {title}</h2>
+            {/* <h2>ItemsComponent1 {title}</h2> */}
+            <h2>ItemsComponent1</h2>
         </div>
     );
 };
