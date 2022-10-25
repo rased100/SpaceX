@@ -6,6 +6,9 @@ import { removeSelectedItem, selectedItem } from '../../features/redux/actions/i
 
 const ItemComponent = () => {
     const item = useSelector((state) => state.item);
+    const { mission_name, rocket, links, launch_failure_details, details } = item;
+
+
     const { itemId } = useParams();
     const dispatch = useDispatch();
 
@@ -33,9 +36,12 @@ const ItemComponent = () => {
                 <div>...Loading</div>
             ) : (
                 <div className="card bg-info text-dark ">
-                    <img src={item.links.mission_patch_small} className="w-75" alt="" />
+                    <img src={links?.mission_patch_small || 'not found'} className="w-75" alt="" />
                     <div className="card-body">
-                        <h5 className=''>{item.flight_number}</h5>
+                        <h4>Mission Name: {mission_name || 'not found'}</h4>
+                        <h2>{rocket?.rocket_name || 'not found'}</h2>
+                        <p>Launch Failure Details: {launch_failure_details?.reason || 'not found'}</p>
+                        <p>Details: {details || 'not found'}</p>
                     </div>
                 </div>
             )}
