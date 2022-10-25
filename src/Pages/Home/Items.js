@@ -2,11 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Items = ({ allItem }) => {
-    const { launch_success, upcoming, flight_number, launch_date_local: date } = allItem;
-    const { mission_patch_small: img } = allItem.links;
-    const { rocket_name: name } = allItem.rocket;
-
-    // console.log('ls', launch_success)
+    const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = allItem;
 
     let lStatus;
     if (launch_success) {
@@ -27,13 +23,13 @@ const Items = ({ allItem }) => {
         <>
             <div className="col-md-3" >
                 <div className="card bg-info text-dark ">
-                    <img src={img} className="w-75" alt="" />
+                    <img src={links.mission_patch_small} className="w-75" alt="" />
                     <div className="card-body">
-                        <h5 className=''>{name}</h5>
+                        <h5 className=''>{rocket.rocket_name}</h5>
                         <p>Launch Status: {lStatus}</p>
                         <p>Is Upcoming: {lUpComing}</p>
                         <Link to={`item/${flight_number}`}><button type="button" className="btn btn-warning">See Details</button></Link>
-                        <p>launch date: {date}</p>
+                        <p>launch date: {launch_date_local}</p>
                     </div>
                 </div>
             </div>
