@@ -14,3 +14,9 @@ export const selectedItem = (item) => {
         payload: item
     }
 };
+
+export const removeSelectedItem = () => {
+    return {
+        type: ActionTypes.REMOVE_SELECTED_ITEM
+    }
+};
