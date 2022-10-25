@@ -32,7 +32,7 @@ const Items = ({ allItem }) => {
                         <h5 className=''>{name}</h5>
                         <p>Launch Status: {lStatus}</p>
                         <p>Is Upcoming: {lUpComing}</p>
-                        <Link to={`item/${flight_number}`}><button type="button" class="btn btn-warning">See Details</button></Link>
+                        <Link to={`item/${flight_number}`}><button type="button" className="btn btn-warning">See Details</button></Link>
                         <p>launch date: {date}</p>
                     </div>
                 </div>

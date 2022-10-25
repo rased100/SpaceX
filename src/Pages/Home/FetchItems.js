@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../../features/redux/actions/itemActions';
@@ -10,14 +11,18 @@ const FetchItems = () => {
     const dispatch = useDispatch();
 
 
+    const fetchItems = async () => {
+        const response = await axios
+            .get("https://api.spacexdata.com/v3/launches")
+            .catch((err) => {
+                console.log("Err", err);
+            });
+        dispatch(setItems(response.data));
+    };
     useEffect(() => {
-        fetch(`https://api.spacexdata.com/v3/launches`)
-            .then(res => res.json())
-            .then(data => {
-                dispatch(setItems(data))
-                console.log('data', data)
-            })
-    }, [])
+        fetchItems();
+    }, []);
+    console.log(items);
     return (
         <div>
             <ItemsComponent />
