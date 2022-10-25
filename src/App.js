@@ -7,14 +7,14 @@ import {
   Route,
   useRoutes,
 } from "react-router-dom";
-import Item from './Pages/Home/Item';
+import ItemComponent from './Pages/Home/ItemComponent';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/item/:itemId" element={<Item />} />
+        <Route path="/item/:itemId" element={<ItemComponent />} />
       </Routes>
     </div>
   );

@@ -22,7 +22,7 @@ const FetchItems = () => {
     useEffect(() => {
         fetchItems();
     }, []);
-    console.log(items);
+    // console.log(items);
     return (
         <div>
             <ItemsComponent />
