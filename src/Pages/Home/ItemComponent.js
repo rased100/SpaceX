@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectedItem } from '../../features/redux/actions/itemActions';
+import ItemDetails from './ItemDetails';
 
 const ItemComponent = () => {
     const item = useSelector((state) => state.item);
@@ -25,9 +26,7 @@ const ItemComponent = () => {
     }, [itemId]);
 
     return (
-        <div>
-            <h2>Single Item</h2>
-        </div>
+        <ItemDetails item={item}></ItemDetails>
     );
 };
 
