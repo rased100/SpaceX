@@ -1,7 +1,7 @@
 import { ActionTypes } from "../contants/action-types";
 
 const initialState = {
-    products: [{
+    items: [{
         id: 1,
         title: "Rased",
         category: "programmer",
