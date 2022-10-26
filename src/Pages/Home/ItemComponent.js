@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import { removeSelectedItem, selectedItem } from '../../features/redux/actions/itemActions';
-import { fetchAsyncRocketDetail, getAllRockets, getRocket } from '../../features/rockets/rocketSlice';
+import { fetchAsyncRocketDetail, getRocket } from '../../features/rockets/rocketSlice';
 
 const ItemComponent = () => {
     const item = useSelector(getRocket);
-    console.log('ritem', item)
+    // console.log('ritem', item)
     const { mission_name, rocket, links, launch_failure_details, details } = item;
 
 
@@ -15,7 +13,7 @@ const ItemComponent = () => {
     const dispatch = useDispatch();
 
     const keys = Object.keys(item);
-    // console.log('key', keys.length);
+    // console.log('keys', keys.length);
 
 
     useEffect(() => {
@@ -23,8 +21,7 @@ const ItemComponent = () => {
     }, [dispatch, itemId]);
 
     return (
-        <>
-            {/* <p>sr</p> */}
+        <div>
             {keys.length === 0 ? (
                 <div>...Loading</div>
             ) : (
@@ -38,7 +35,7 @@ const ItemComponent = () => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

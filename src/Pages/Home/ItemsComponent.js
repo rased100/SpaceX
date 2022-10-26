@@ -6,7 +6,6 @@ import Items from './Items';
 const ItemsComponent = () => {
     const items = useSelector(getAllRockets);
     // console.log(items);
-    // const { title } = items[0];
 
     const keys = Object.keys(items);
     // console.log('key', keys.length);
