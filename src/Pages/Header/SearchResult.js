@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const SearchResult = ({ sItems }) => {
     const { launch_success, upcoming, flight_number, launch_date_local, rocket, mission_name, links } = sItems;
 
-    const rendered = sItems.length;
-    console.log('rendered', rendered)
+    // const rendered = sItems.length;
+    // console.log('rendered', rendered)
 
 
     let lStatus;

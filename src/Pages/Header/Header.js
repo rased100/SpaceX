@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { getAllRockets } from '../../features/rockets/rocketSlice';
 import SearchResult from './SearchResult';
 
 const Header = () => {
 
-    const myiIems = useSelector((state) => state.allItems.items);
+    const myiIems = useSelector(getAllRockets);
 
-    console.log('myItems', myiIems);
+    // console.log('myItems', myiIems);
 
     const [q, setQ] = useState("");
     const [searchTerm] = useState(["mission_name"]);
 
     const search = (items) => {
-        return items.filter((item) => {
+        return Object.values(items).filter((item) => {
             return searchTerm.some((newItem) => {
                 return (
                     item[newItem]

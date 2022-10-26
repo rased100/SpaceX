@@ -13,7 +13,7 @@ const ItemsComponent = () => {
     return (
         <>
             {keys.length === 0 ? (
-                <div>...Loading</div>
+                <div><p>...Loading</p></div>
             ) : (
                 <div>
                     <h1>SpaceX Rockets</h1>

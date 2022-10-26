@@ -23,7 +23,7 @@ const ItemComponent = () => {
     return (
         <div>
             {keys.length === 0 ? (
-                <div>...Loading</div>
+                <div><p>...Loading</p></div>
             ) : (
                 <div className="card bg-info text-dark ">
                     <img src={links?.mission_patch_small || 'not found'} className="w-75" alt="" />
