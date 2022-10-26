@@ -5,7 +5,7 @@ import FetchItems from './FetchItems';
 const Home = () => {
     return (
         <div>
-            <Header></Header>
+            {/* <Header></Header> */}
             <FetchItems></FetchItems>
         </div>
     );

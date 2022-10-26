@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { getAllRockets } from '../../features/rockets/rocketSlice';
 import Items from './Items';
 
 const ItemsComponent = () => {
-    const items = useSelector((state) => state.allItems.items);
+    const items = useSelector(getAllRockets);
     // console.log(items);
     // const { title } = items[0];
 
