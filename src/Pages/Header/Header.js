@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import SearchResult from './SearchResult';
 
 const Header = () => {
 
@@ -7,33 +8,10 @@ const Header = () => {
 
     console.log('myItems', myiIems);
 
-    const [profileData, setprofileData] = useState([
-        {
-            name: "Brian Kernighan",
-            email: "brian@test.com",
-            password: "password1",
-            skills: ["AWK", "AMPL", "Unix"]
-        },
-        {
-            name: "Max Kanat-Alexander",
-            email: "max@test.com",
-            password: "password1",
-            skills: ["Java", "Perl", "Apache", "Python"]
-        },
-        {
-            name: "Spruce Emmanuel",
-            email: "new@test.com",
-            password: "password1",
-            skills: ["JavaScript", "Perl", "Apache", "Node.js"]
-        }
-    ]);
-
-    console.log('profileData', profileData);
-
     const [q, setQ] = useState("");
     const [searchTerm] = useState(["mission_name"]);
 
-    function search(items) {
+    const search = (items) => {
         return items.filter((item) => {
             return searchTerm.some((newItem) => {
                 return (
@@ -44,27 +22,29 @@ const Header = () => {
                 );
             });
         });
-    }
+    };
 
 
     return (
         <>
             <div>
-                <h2>Search and Select Filtering...</h2>
-                <input
-                    type="text"
-                    placeholder="search by mission name"
-                    value={q}
-                    onChange={(e) => setQ(e.target.value)}
-                />
+                <div className='bg-success'>
+                    <a className='fs-3' href="/">Space TechNext</a>
+                    <h4>Search and Select Filtering...</h4>
+                    <span>
+                        <input
+                            type="text"
+                            placeholder="search by mission name"
+                            value={q}
+                            onChange={(e) => setQ(e.target.value)}
+                        />
+                    </span>
+                    <h4>Total Rendered Items:</h4>
+                </div>
 
-                {search(myiIems).map((val, key) => {
-                    return (
-                        <div className="box" key={key}>
-                            <p>{val.mission_name}</p>
-                        </div>
-                    );
-                })}
+                {
+                    search(myiIems).map(sItems => <SearchResult sItems={sItems} key={sItems.mission_name}></SearchResult>)
+                }
             </div>
         </>
     );
