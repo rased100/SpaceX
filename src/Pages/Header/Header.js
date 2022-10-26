@@ -53,7 +53,7 @@ const Header = () => {
                 <h2>Search and Select Filtering...</h2>
                 <input
                     type="text"
-                    placeholder="search..."
+                    placeholder="search by mission name"
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
                 />
