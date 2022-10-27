@@ -128,8 +128,8 @@ const Search = () => {
                                                     <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
                                                     <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
                                                     <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
-                                                    <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
-                                                    <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
+                                                    <Link to={`item/${flight_number}`}> <Button className='mb-2' variant="warning">See Details</Button></Link>
+                                                    <Card.Text className='text-info border-top   border-dark border-opacity-25'>launch date: <br /> {launch_date_local}</Card.Text>
                                                 </Card.Body>
                                             </Card>
                                         </div>
