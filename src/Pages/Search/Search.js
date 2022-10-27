@@ -61,14 +61,44 @@ const Search = () => {
                 <div className='mb-0'>
                     <h1 className='text-warning fw-bold p-3' style={{ fontSize: '45px' }}>Space TechNext</h1>
                     <h2 className='text-white pt-3' style={{ fontSize: '26px' }}>Search and Select Filtering...</h2>
+
+                    {/* Search Options Start */}
+
+                    {/* search by name */}
                     <InputGroup className="mb-3 w-25">
                         <Form.Control
-                            placeholder="Username"
+                            placeholder="Srarch by Rocket Name"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             onChange={(e) => searchItems(e.target.value)}
                         />
                     </InputGroup>
+
+                    {/* Lunch Date */}
+                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
+                        <option>Lunch Date</option>
+                        <option value="1">Last Week</option>
+                        <option value="2">Last Month</option>
+                        <option value="3">Last Year</option>
+                        <option value="4">Last 5 Years</option>
+                    </Form.Select>
+
+                    {/* Lunch Status */}
+                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
+                        <option>Lunch Status</option>
+                        <option value="1">Success</option>
+                        <option value="2">Failure</option>
+                    </Form.Select>
+
+                    {/* Is Upcoming */}
+                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
+                        <option>Is Upcoming</option>
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                    </Form.Select>
+
+                    {/* Search Options End */}
+
                     <h5 className='text-white mb-0 p-5'>Total Rendered Items: <span className='bg-info p-1 rounded-pill'>{filteredResults.length}</span></h5>
                 </div>
                 <div>
