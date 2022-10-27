@@ -7,20 +7,23 @@ import { getAllRockets } from '../../features/rockets/rocketSlice';
 const Search = () => {
 
     const APIData = useSelector(getAllRockets);
-    const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = APIData;
+    const { launch_success, upcoming, flight_number, launch_date_local, rocket, links, mission_name } = APIData;
     const [filteredResults, setFilteredResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [searchTerm] = useState(["mission_name"]);
 
     console.log('filtered result', filteredResults);
+    console.log('searchInput1', searchInput);
+    console.log('searchInput2', typeof (searchInput));
 
     useEffect(() => {
         fetch(`https://api.spacexdata.com/v3/launches`)
             .then(res => (res.json()))
             .then(data => {
                 // console.log('fdata', data)
-                setFilteredResults(data)
+                setFilteredResults(data);
             });
+
 
 
     }, [])
@@ -155,7 +158,7 @@ const Search = () => {
                             lUpComing = 'X'
                         }
                         return (
-                            <>
+                            <div key={mission_name}>
 
                                 <div className="col-md-3" >
                                     <div className="card bg-info text-dark ">
@@ -169,7 +172,7 @@ const Search = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </>
+                            </div>
                         )
                     })
 
