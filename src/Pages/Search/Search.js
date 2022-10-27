@@ -60,48 +60,48 @@ const Search = () => {
             <div className='bg-success'>
                 <div className='mb-0'>
                     <h1 className='text-warning fw-bold p-3' style={{ fontSize: '45px' }}>Space TechNext</h1>
-                    <h2 className='text-white pt-3' style={{ fontSize: '26px' }}>Search and Select Filtering...</h2>
+                    <h2 className='text-white pt-3' style={{ fontSize: '28px' }}>Search and Select Filtering...</h2>
 
                     {/* Search Options Start */}
+                    <div className='container d-flex'>
+                        {/* search by name */}
+                        <InputGroup>
+                            <Form.Control
+                                placeholder="Srarch by Rocket Name"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                onChange={(e) => searchItems(e.target.value)}
+                            />
+                        </InputGroup>
 
-                    {/* search by name */}
-                    <InputGroup className="mb-3 w-25">
-                        <Form.Control
-                            placeholder="Srarch by Rocket Name"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            onChange={(e) => searchItems(e.target.value)}
-                        />
-                    </InputGroup>
+                        {/* Lunch Date */}
+                        <Form.Select className="ms-3" aria-label="Default select example">
+                            <option>Lunch Date</option>
+                            <option value="1">Last Week</option>
+                            <option value="2">Last Month</option>
+                            <option value="3">Last Year</option>
+                            <option value="4">Last 5 Years</option>
+                        </Form.Select>
 
-                    {/* Lunch Date */}
-                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
-                        <option>Lunch Date</option>
-                        <option value="1">Last Week</option>
-                        <option value="2">Last Month</option>
-                        <option value="3">Last Year</option>
-                        <option value="4">Last 5 Years</option>
-                    </Form.Select>
+                        {/* Lunch Status */}
+                        <Form.Select className="ms-3" aria-label="Default select example">
+                            <option>Lunch Status</option>
+                            <option value="1">Success</option>
+                            <option value="2">Failure</option>
+                        </Form.Select>
 
-                    {/* Lunch Status */}
-                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
-                        <option>Lunch Status</option>
-                        <option value="1">Success</option>
-                        <option value="2">Failure</option>
-                    </Form.Select>
-
-                    {/* Is Upcoming */}
-                    <Form.Select className="mb-3 w-25" aria-label="Default select example">
-                        <option>Is Upcoming</option>
-                        <option value="1">Yes</option>
-                        <option value="2">No</option>
-                    </Form.Select>
-
+                        {/* Is Upcoming */}
+                        <Form.Select className="ms-3" aria-label="Default select example">
+                            <option>Is Upcoming</option>
+                            <option value="1">Yes</option>
+                            <option value="2">No</option>
+                        </Form.Select>
+                    </div>
                     {/* Search Options End */}
 
                     <h5 className='text-white mb-0 p-5'>Total Rendered Items: <span className='bg-info p-1 rounded-pill'>{filteredResults.length}</span></h5>
                 </div>
-                <div>
+                <div className='bg-dark'>
                     <div className='container'>
                         <div className='row'>
                             {
@@ -121,9 +121,9 @@ const Search = () => {
                                         lUpComing = 'X'
                                     }
                                     return (
-                                        <div className='col-md-3 p-4 bg-dark' key={key}>
-                                            <Card style={{ width: '80%' }} className="bg-secondary">
-                                                <Card.Img variant="top" src={links.mission_patch_small} />
+                                        <div className='col-md-3 p-4' key={key}>
+                                            <Card className="bg-secondary">
+                                                <Card.Img className='mx-auto w-50 pt-1' variant="top" src={links.mission_patch_small} />
                                                 <Card.Body>
                                                     <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
                                                     <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
