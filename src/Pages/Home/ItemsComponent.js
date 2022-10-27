@@ -15,7 +15,9 @@ const ItemsComponent = () => {
             {keys.length === 0 ? (
                 <div><p>...Loading</p></div>
             ) : (
-                <div style={{ opacity: 0 }}>
+                <div style={{
+                    display: 'none',
+                }}>
                     <h1>SpaceX Rockets</h1>
                     <div>
                         {
