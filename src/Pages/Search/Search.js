@@ -72,40 +72,42 @@ const Search = () => {
                     <h5 className='text-white mb-0 p-5'>Total Rendered Items: <span className='bg-info p-1 rounded-pill'>{filteredResults.length}</span></h5>
                 </div>
                 <div>
-                    {
-                        Object.values(filteredResults).map((item, key = { mission_name }) => {
-                            const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
-                            let lStatus;
-                            if (launch_success) {
-                                lStatus = 'Success'
-                            } else {
-                                lStatus = 'Failed'
-                            };
+                    <div className='container'>
+                        <div className='row'>
+                            {
+                                Object.values(filteredResults).map((item, key = { mission_name }) => {
+                                    const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
+                                    let lStatus;
+                                    if (launch_success) {
+                                        lStatus = 'Success'
+                                    } else {
+                                        lStatus = 'Failed'
+                                    };
 
-                            let lUpComing;
-                            if (upcoming) {
-                                lUpComing = 'Yes'
-                            } else {
-                                lUpComing = 'X'
+                                    let lUpComing;
+                                    if (upcoming) {
+                                        lUpComing = 'Yes'
+                                    } else {
+                                        lUpComing = 'X'
+                                    }
+                                    return (
+                                        <div className='col-md-3 p-4 bg-dark' key={key}>
+                                            <Card style={{ width: '80%' }} className="bg-secondary">
+                                                <Card.Img variant="top" src={links.mission_patch_small} />
+                                                <Card.Body>
+                                                    <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
+                                                    <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
+                                                    <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
+                                                    <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
+                                                    <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    )
+                                })
                             }
-                            return (
-                                <>
-                                    <div className='col-md-3 p-4 bg-dark'>
-                                        <Card style={{ width: '80%' }} className="bg-secondary">
-                                            <Card.Img variant="top" src={links.mission_patch_small} />
-                                            <Card.Body>
-                                                <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
-                                                <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
-                                                <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
-                                                <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
-                                                <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                </>
-                            )
-                        })
-                    }
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
