@@ -107,19 +107,22 @@ const Search = () => {
                             {
                                 Object.values(filteredResults).map((item, key = { mission_name }) => {
                                     const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
+
                                     let lStatus;
                                     if (launch_success) {
-                                        lStatus = 'Success'
+                                        lStatus = <i class="fa-solid fa-check-double text-success"></i>
                                     } else {
-                                        lStatus = 'Failed'
+                                        lStatus = <i class="fa-solid fa-square-xmark text-danger"></i>
                                     };
 
                                     let lUpComing;
                                     if (upcoming) {
-                                        lUpComing = 'Yes'
+                                        lUpComing = <i class="fa-solid fa-check-double text-success"></i>
                                     } else {
-                                        lUpComing = 'X'
+                                        lUpComing = <i class="fa-solid fa-square-xmark text-danger"></i>
                                     }
+
+
                                     return (
                                         <div className='col-md-3 p-4' key={key}>
                                             <Card className="bg-secondary">
