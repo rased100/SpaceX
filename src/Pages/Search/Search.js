@@ -1,8 +1,10 @@
+import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllRockets } from '../../features/rockets/rocketSlice';
+import { Card } from 'react-bootstrap';
 
 const Search = () => {
 
@@ -52,7 +54,7 @@ const Search = () => {
 
     return (
 
-        <div>
+        <div className='bg-success'>
             <h2>Space TechNext</h2>
             <span>-------------------------------------------------------------</span><br />
             <h2>Search and Select Filtering...</h2>
@@ -62,7 +64,7 @@ const Search = () => {
             />
             <h5>Total Rendered Items: {filteredResults.length}</h5>
 
-            <div style={{ marginTop: 20 }}>
+            <div>
                 {
                     Object.values(filteredResults).map((item, key = { mission_name }) => {
                         const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
@@ -80,21 +82,20 @@ const Search = () => {
                             lUpComing = 'X'
                         }
                         return (
-                            <div key={key}>
-
-                                <div className="col-md-3" >
-                                    <div className="card bg-info text-dark ">
-                                        <img src={links.mission_patch_small} className="w-75" alt="" />
-                                        <div className="card-body">
-                                            <h5 className=''>{rocket.rocket_name}</h5>
-                                            <p>Launch Status: {lStatus}</p>
-                                            <p>Is Upcoming: {lUpComing}</p>
-                                            <Link to={`item/${flight_number}`}><button type="button" className="btn btn-warning">See Details</button></Link>
-                                            <p>launch date: {launch_date_local}</p>
-                                        </div>
-                                    </div>
+                            <>
+                                <div className='col-md-3 p-4 bg-dark'>
+                                    <Card style={{ width: '80%' }} className="bg-secondary">
+                                        <Card.Img variant="top" src={links.mission_patch_small} />
+                                        <Card.Body>
+                                            <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
+                                            <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
+                                            <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
+                                            <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
+                                            <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
+                                        </Card.Body>
+                                    </Card>
                                 </div>
-                            </div>
+                            </>
                         )
                     })
 
