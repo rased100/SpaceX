@@ -8,6 +8,8 @@ import {
   useRoutes,
 } from "react-router-dom";
 import ItemComponent from './Pages/Home/ItemComponent';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (

@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllRockets } from '../../features/rockets/rocketSlice';
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Search = () => {
 
@@ -54,54 +56,59 @@ const Search = () => {
 
     return (
 
-        <div className='bg-success'>
-            <h2>Space TechNext</h2>
-            <span>-------------------------------------------------------------</span><br />
-            <h2>Search and Select Filtering...</h2>
-            <input
-                placeholder='search'
-                onChange={(e) => searchItems(e.target.value)}
-            />
-            <h5>Total Rendered Items: {filteredResults.length}</h5>
+        <>
+            <div className='bg-success'>
+                <div className='mb-0'>
+                    <h1 className='text-warning fw-bold p-3' style={{ fontSize: '45px' }}>Space TechNext</h1>
+                    <h2 className='text-white pt-3' style={{ fontSize: '26px' }}>Search and Select Filtering...</h2>
+                    <InputGroup className="mb-3 w-25">
+                        <Form.Control
+                            placeholder="Username"
+                            aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            onChange={(e) => searchItems(e.target.value)}
+                        />
+                    </InputGroup>
+                    <h5 className='text-white mb-0 p-5'>Total Rendered Items: <span className='bg-info p-1 rounded-pill'>{filteredResults.length}</span></h5>
+                </div>
+                <div>
+                    {
+                        Object.values(filteredResults).map((item, key = { mission_name }) => {
+                            const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
+                            let lStatus;
+                            if (launch_success) {
+                                lStatus = 'Success'
+                            } else {
+                                lStatus = 'Failed'
+                            };
 
-            <div>
-                {
-                    Object.values(filteredResults).map((item, key = { mission_name }) => {
-                        const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
-                        let lStatus;
-                        if (launch_success) {
-                            lStatus = 'Success'
-                        } else {
-                            lStatus = 'Failed'
-                        };
-
-                        let lUpComing;
-                        if (upcoming) {
-                            lUpComing = 'Yes'
-                        } else {
-                            lUpComing = 'X'
-                        }
-                        return (
-                            <>
-                                <div className='col-md-3 p-4 bg-dark'>
-                                    <Card style={{ width: '80%' }} className="bg-secondary">
-                                        <Card.Img variant="top" src={links.mission_patch_small} />
-                                        <Card.Body>
-                                            <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
-                                            <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
-                                            <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
-                                            <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
-                                            <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                            </>
-                        )
-                    })
-
-                }
+                            let lUpComing;
+                            if (upcoming) {
+                                lUpComing = 'Yes'
+                            } else {
+                                lUpComing = 'X'
+                            }
+                            return (
+                                <>
+                                    <div className='col-md-3 p-4 bg-dark'>
+                                        <Card style={{ width: '80%' }} className="bg-secondary">
+                                            <Card.Img variant="top" src={links.mission_patch_small} />
+                                            <Card.Body>
+                                                <Card.Title className='text-warning'>{rocket.rocket_name}</Card.Title>
+                                                <Card.Text className='text-info'>Launch Status: {lStatus}</Card.Text>
+                                                <Card.Text className='text-info'>Is Upcoming: {lUpComing}</Card.Text>
+                                                <Link to={`item/${flight_number}`}> <Button variant="warning">See Details</Button></Link>
+                                                <Card.Text className='text-info'>launch date: <br /> {launch_date_local}</Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                </>
+                            )
+                        })
+                    }
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
