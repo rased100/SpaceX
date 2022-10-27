@@ -12,9 +12,9 @@ const Search = () => {
     const [searchInput, setSearchInput] = useState('');
     const [searchTerm] = useState(["mission_name"]);
 
-    console.log('filtered result', filteredResults);
-    console.log('searchInput1', searchInput);
-    console.log('searchInput2', typeof (searchInput));
+    // console.log('filtered result', filteredResults);
+    // console.log('searchInput1', searchInput);
+    // console.log('searchInput2', typeof (searchInput));
 
     useEffect(() => {
         fetch(`https://api.spacexdata.com/v3/launches`)
@@ -50,9 +50,6 @@ const Search = () => {
         }
     }
 
-
-
-
     return (
 
         <div>
@@ -65,84 +62,9 @@ const Search = () => {
             />
             <h5>Total Rendered Items: {filteredResults.length}</h5>
 
-
-            {/* {searchInput.length > 0 ? (<h2>Search Result</h2>) : (<span></span>)} */}
-            {/* <h2>Search Result: {filteredResults.length}</h2> */}
-
             <div style={{ marginTop: 20 }}>
-                {/* {searchInput.length > 0 ? (
-                    Object.values(filteredResults).map((item) => {
-                        const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
-                        let lStatus;
-                        if (launch_success) {
-                            lStatus = 'Success'
-                        } else {
-                            lStatus = 'Failed'
-                        };
-
-                        let lUpComing;
-                        if (upcoming) {
-                            lUpComing = 'Yes'
-                        } else {
-                            lUpComing = 'X'
-                        }
-                        return (
-                            <>
-
-                                <div className="col-md-3" >
-                                    <div className="card bg-info text-dark ">
-                                        <img src={links.mission_patch_small} className="w-75" alt="" />
-                                        <div className="card-body">
-                                            <h5 className=''>{rocket.rocket_name}</h5>
-                                            <p>Launch Status: {lStatus}</p>
-                                            <p>Is Upcoming: {lUpComing}</p>
-                                            <Link to={`item/${flight_number}`}><button type="button" className="btn btn-warning">See Details</button></Link>
-                                            <p>launch date: {launch_date_local}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    })
-                ) : (
-                    Object.values(APIData).map((item) => {
-                        const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
-                        let lStatus;
-                        if (launch_success) {
-                            lStatus = 'Success'
-                        } else {
-                            lStatus = 'Failed'
-                        };
-
-                        let lUpComing;
-                        if (upcoming) {
-                            lUpComing = 'Yes'
-                        } else {
-                            lUpComing = 'X'
-                        }
-                        return (
-                            <>
-
-                                <div className="col-md-3" >
-                                    <div className="card bg-info text-dark ">
-                                        <img src={links.mission_patch_small} className="w-75" alt="" />
-                                        <div className="card-body">
-                                            <h5 className=''>{rocket.rocket_name}</h5>
-                                            <p>Launch Status: {lStatus}</p>
-                                            <p>Is Upcoming: {lUpComing}</p>
-                                            <Link to={`item/${flight_number}`}><button type="button" className="btn btn-warning">See Details</button></Link>
-                                            <p>launch date: {launch_date_local}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    })
-                )} */}
-
                 {
-
-                    Object.values(filteredResults).map((item) => {
+                    Object.values(filteredResults).map((item, key = { mission_name }) => {
                         const { launch_success, upcoming, flight_number, launch_date_local, rocket, links } = item;
                         let lStatus;
                         if (launch_success) {
@@ -158,7 +80,7 @@ const Search = () => {
                             lUpComing = 'X'
                         }
                         return (
-                            <div key={mission_name}>
+                            <div key={key}>
 
                                 <div className="col-md-3" >
                                     <div className="card bg-info text-dark ">
