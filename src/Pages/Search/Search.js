@@ -92,53 +92,123 @@ const Search = () => {
             setFilteredResults(APIData)
         }
     };
-    // last 5/1/month/week------------------------------------------------------Start
+    // last 5/1/month/week----End
 
 
-    // lunch status
+    // lunch status--------------------------------------------------------------Start
     const lunchStatusBtn = (searchValue) => {
-        // setSearchInput(searchValue)
-        setFilteredResults(APIData)
-        if (searchValue !== '') {
-            const filteredData = Object.values(APIData).filter((item) => {
-                return searchTeamLs.some((newItem) => {
-                    return (
-                        item[newItem]
-                            ?.toString()
-                            .toLowerCase()
-                            .indexOf(searchValue.toLowerCase()) > -1
-                    );
-                });
-            })
-            // console.log('filterdData', filteredData);
-            setFilteredResults(filteredData)
-        } else if (searchInput == '') {
+        if (searchValue == 'true') {
+            setFilteredResults(SuccessData)
+        } else if (searchValue == 'false') {
+            setFilteredResults(FailureData)
+        } else {
             setFilteredResults(APIData)
         }
     };
 
+    const SuccessData = Object.values(APIData).filter((item) => {
+        const searchFor = 'true';
+        return searchTeamLs.some((newItem) => {
+            return (
+                item[newItem]
+                    ?.toString()
+                    .toLowerCase()
+                    .indexOf(searchFor.toLowerCase()) > -1
+            );
+        });
+    });
 
-    // UpComming
+    const FailureData = Object.values(APIData).filter((item) => {
+        const searchFor = 'false';
+        return searchTeamLs.some((newItem) => {
+            return (
+                item[newItem]
+                    ?.toString()
+                    .toLowerCase()
+                    .indexOf(searchFor.toLowerCase()) > -1
+            );
+        });
+    });
+
+    // const lunchStatusBtnF = (searchValue) => {
+    //     // setSearchInput(searchValue)
+    //     if (searchValue !== '') {
+    //         const filteredData = Object.values(APIData).filter((item) => {
+    //             return searchTeamLs.some((newItem) => {
+    //                 return (
+    //                     item[newItem]
+    //                         ?.toString()
+    //                         .toLowerCase()
+    //                         .indexOf(searchValue.toLowerCase()) > -1
+    //                 );
+    //             });
+    //         })
+    //         // console.log('filterdData', filteredData);
+    //         setFilteredResults(filteredData)
+    //     }
+    // };
+
+    // lunch status-------------End
+
+
+    // UpComming-------------------------------------------------------------Start
     const isUpcomingBtn = (searchValue) => {
-        // setSearchInput(searchValue)
-        if (searchValue !== '') {
-            const filteredData = Object.values(APIData).filter((item) => {
-                return searchTeamUc.some((newItem) => {
-                    return (
-                        item[newItem]
-                            ?.toString()
-                            .toLowerCase()
-                            .indexOf(searchValue.toLowerCase()) > -1
-                    );
-                });
-            })
-            // console.log('filterdData', filteredData);
-            setFilteredResults(filteredData)
-        }
-        else if (searchInput == '') {
+        if (searchValue == 'true') {
+            setFilteredResults(YesData)
+        } else if (searchValue == 'false') {
+            setFilteredResults(NoData)
+        } else {
             setFilteredResults(APIData)
         }
     };
+
+    const YesData = Object.values(APIData).filter((item) => {
+        const searchFor = 'true';
+        return searchTeamUc.some((newItem) => {
+            return (
+                item[newItem]
+                    ?.toString()
+                    .toLowerCase()
+                    .indexOf(searchFor.toLowerCase()) > -1
+            );
+        });
+    });
+
+    const NoData = Object.values(APIData).filter((item) => {
+        const searchFor = 'false';
+        return searchTeamUc.some((newItem) => {
+            return (
+                item[newItem]
+                    ?.toString()
+                    .toLowerCase()
+                    .indexOf(searchFor.toLowerCase()) > -1
+            );
+        });
+    });
+
+
+    // const isUpcomingBtnF = (searchValue) => {
+    //     // setSearchInput(searchValue)
+    //     if (searchValue !== '') {
+    //         const filteredData = Object.values(APIData).filter((item) => {
+    //             return searchTeamUc.some((newItem) => {
+    //                 return (
+    //                     item[newItem]
+    //                         ?.toString()
+    //                         .toLowerCase()
+    //                         .indexOf(searchValue.toLowerCase()) > -1
+    //                 );
+    //             });
+    //         })
+    //         // console.log('filterdData', filteredData);
+    //         setFilteredResults(filteredData)
+    //     }
+    //     else if (searchInput == '') {
+    //         setFilteredResults(APIData)
+    //     }
+    // };
+
+    // UpComming----------------End
 
 
 
