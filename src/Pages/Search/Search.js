@@ -98,6 +98,7 @@ const Search = () => {
     // lunch status
     const lunchStatusBtn = (searchValue) => {
         // setSearchInput(searchValue)
+        setFilteredResults(APIData)
         if (searchValue !== '') {
             const filteredData = Object.values(APIData).filter((item) => {
                 return searchTeamLs.some((newItem) => {
@@ -209,16 +210,16 @@ const Search = () => {
 
                                     let lStatus;
                                     if (launch_success) {
-                                        lStatus = <i class="fa-solid fa-check-double text-success"></i>
+                                        lStatus = <i className="fa-solid fa-check-double text-success"></i>
                                     } else {
-                                        lStatus = <i class="fa-solid fa-square-xmark text-danger"></i>
+                                        lStatus = <i className="fa-solid fa-square-xmark text-danger"></i>
                                     };
 
                                     let lUpComing;
                                     if (upcoming) {
-                                        lUpComing = <i class="fa-solid fa-check-double text-success"></i>
+                                        lUpComing = <i className="fa-solid fa-check-double text-success"></i>
                                     } else {
-                                        lUpComing = <i class="fa-solid fa-square-xmark text-danger"></i>
+                                        lUpComing = <i className="fa-solid fa-square-xmark text-danger"></i>
                                     }
 
 
