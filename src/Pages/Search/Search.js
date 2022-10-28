@@ -62,77 +62,13 @@ const Search = () => {
         }
     };
 
+    // last 5/1/month/week------------------------------------------------------Start
 
-
-    // lunch status
-    const lunchStatusBtn = (searchValue) => {
-        setSearchInput(searchValue)
-        if (searchInput !== '') {
-            const filteredData = Object.values(APIData).filter((item) => {
-                return searchTeamLs.some((newItem) => {
-                    return (
-                        item[newItem]
-                            ?.toString()
-                            .toLowerCase()
-                            .indexOf(searchInput.toLowerCase()) > -1
-                    );
-                });
-            })
-            // console.log('filterdData', filteredData);
-            setFilteredResults(filteredData)
-        }
-        else {
-            setFilteredResults(APIData)
-        }
-    };
-
-
-    // UpComming
-    const isUpcomingBtn = (searchValue) => {
-        setSearchInput(searchValue)
-        if (searchInput !== '') {
-            const filteredData = Object.values(APIData).filter((item) => {
-                return searchTeamUc.some((newItem) => {
-                    return (
-                        item[newItem]
-                            ?.toString()
-                            .toLowerCase()
-                            .indexOf(searchInput.toLowerCase()) > -1
-                    );
-                });
-            })
-            // console.log('filterdData', filteredData);
-            setFilteredResults(filteredData)
-        }
-        else {
-            setFilteredResults(APIData)
-        }
-    };
-
-    // last 5/1 Years------------------------------------------------------Start
-
-
-    // let today = new Date();
-    // console.log('today', today.toLocaleString());
-
-    // let lastYearStart = new Date(today.getFullYear() - 1, 0, 1);
-    // let lastYearEnd = new Date(today.getFullYear(), 0, 1);
-
-    // console.log('lastYearStart', lastYearStart.toLocaleString());
-    // console.log(lastYearEnd.toLocaleString());
-
-    // ----------------------------------------------
-
-    const lastFiveYears = Object.values(APIData).filter(function (item) {
-        // const yearString = item.launch_year;
-        // const StrinsToNum = parseFloat(yearString);
-        // console.log('snum', StrinsToNum);
-        // const gYear = new Date().getFullYear();
-        // console.log('gYear', gYear);
+    const lastFiveYears = Object.values(APIData).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 5;
     });
 
-    const lastYear = Object.values(APIData).filter(function (item) {
+    const lastYear = Object.values(APIData).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 1;
     });
 
@@ -144,14 +80,64 @@ const Search = () => {
             console.log('lastFiveYears', lastFiveYears)
         } else if (searchValue == 3) {
             setFilteredResults(lastYear);
+        } else if (searchValue == 2) {
+            setFilteredResults([]);
+            // There is no result of last Year
+            // so this will be empty also
+        } else if (searchValue == 1) {
+            setFilteredResults([]);
+            // There is no result of last Year
+            // so this will be empty also
         } else {
             setFilteredResults(APIData)
         }
-    }
+    };
+    // last 5/1/month/week------------------------------------------------------Start
 
 
+    // lunch status
+    const lunchStatusBtn = (searchValue) => {
+        // setSearchInput(searchValue)
+        if (searchValue !== '') {
+            const filteredData = Object.values(APIData).filter((item) => {
+                return searchTeamLs.some((newItem) => {
+                    return (
+                        item[newItem]
+                            ?.toString()
+                            .toLowerCase()
+                            .indexOf(searchValue.toLowerCase()) > -1
+                    );
+                });
+            })
+            // console.log('filterdData', filteredData);
+            setFilteredResults(filteredData)
+        } else if (searchInput == '') {
+            setFilteredResults(APIData)
+        }
+    };
 
-    // last 5/1 Years------------------------------------------------------End
+
+    // UpComming
+    const isUpcomingBtn = (searchValue) => {
+        // setSearchInput(searchValue)
+        if (searchValue !== '') {
+            const filteredData = Object.values(APIData).filter((item) => {
+                return searchTeamUc.some((newItem) => {
+                    return (
+                        item[newItem]
+                            ?.toString()
+                            .toLowerCase()
+                            .indexOf(searchValue.toLowerCase()) > -1
+                    );
+                });
+            })
+            // console.log('filterdData', filteredData);
+            setFilteredResults(filteredData)
+        }
+        else if (searchInput == '') {
+            setFilteredResults(APIData)
+        }
+    };
 
 
 
@@ -195,8 +181,8 @@ const Search = () => {
                             onChange={(e) => lunchStatusBtn(e.target.value)}
                         >
                             <option>Lunch Status</option>
-                            <option value='false'>Success</option>
-                            <option value='true'>Failure</option>
+                            <option value='true'>Success</option>
+                            <option value='false'>Failure</option>
                         </Form.Select>
 
                         {/* Is Upcoming */}
@@ -206,8 +192,8 @@ const Search = () => {
                             onChange={(e) => isUpcomingBtn(e.target.value)}
                         >
                             <option>Is Upcoming</option>
-                            <option value="false">Yes</option>
-                            <option value="true">No</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
                         </Form.Select>
                     </div>
                     {/* Search Options End */}
