@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getAllRockets } from '../../features/rockets/rocketSlice';
 import Items from './Items';
+import Loading from './Loading';
 
 const ItemsComponent = () => {
     const items = useSelector(getAllRockets);
@@ -13,7 +14,11 @@ const ItemsComponent = () => {
     return (
         <>
             {keys.length === 0 ? (
-                <div><p>...Loading</p></div>
+                // <div><p>...Loading</p></div>
+                <div className="p-5">
+                    <Loading></Loading>
+                </div>
+
             ) : (
                 <div style={{
                     display: 'none',
