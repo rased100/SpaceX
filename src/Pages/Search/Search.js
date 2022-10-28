@@ -19,6 +19,7 @@ const Search = () => {
     // const [searchTeam] = useState([searchTeamString]);
     const [searchTeam] = useState(["mission_name"]);
     const [searchTeamLs] = useState(["launch_success"]);
+    const [searchTeamUc] = useState(["upcoming"]);
 
 
 
@@ -86,6 +87,29 @@ const Search = () => {
     };
 
 
+    // UpComming
+    const isUpcomingBtn = (searchValue) => {
+        setSearchInput(searchValue)
+        if (searchInput !== '') {
+            const filteredData = Object.values(APIData).filter((item) => {
+                return searchTeamUc.some((newItem) => {
+                    return (
+                        item[newItem]
+                            ?.toString()
+                            .toLowerCase()
+                            .indexOf(searchInput.toLowerCase()) > -1
+                    );
+                });
+            })
+            // console.log('filterdData', filteredData);
+            setFilteredResults(filteredData)
+        }
+        else {
+            setFilteredResults(APIData)
+        }
+    };
+
+
 
     return (
 
@@ -135,11 +159,11 @@ const Search = () => {
                         <Form.Select
                             className="ms-3"
                             aria-label="Default select example"
-                        // onChange={(e) => isUpcomingBtn(e.target.value)}
+                            onChange={(e) => isUpcomingBtn(e.target.value)}
                         >
                             <option>Is Upcoming</option>
-                            <option value="1">Yes</option>
-                            <option value="2">No</option>
+                            <option value="false">Yes</option>
+                            <option value="true">No</option>
                         </Form.Select>
                     </div>
                     {/* Search Options End */}
