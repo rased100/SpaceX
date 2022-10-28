@@ -30,7 +30,7 @@ const Search = () => {
     // search name
     const searchItemsBtn = (searchValue) => {
         if (searchValue !== '') {
-            const filteredData = Object.values(APIData).filter((item) => {
+            const filteredData = Object.values(filteredResults).filter((item) => {
                 return searchTeam.some((newItem) => {
                     return (
                         item[newItem]
@@ -50,11 +50,11 @@ const Search = () => {
 
     // last 5/1/month/week------------------------------------------------------Start
 
-    const lastFiveYears = Object.values(APIData).filter((item) => {
+    const lastFiveYears = Object.values(filteredResults).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 5;
     });
 
-    const lastYear = Object.values(APIData).filter((item) => {
+    const lastYear = Object.values(filteredResults).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 1;
     });
 
@@ -91,7 +91,7 @@ const Search = () => {
         }
     };
 
-    const SuccessData = Object.values(APIData).filter((item) => {
+    const SuccessData = Object.values(filteredResults).filter((item) => {
         const searchFor = 'true';
         return searchTeamLs.some((newItem) => {
             return (
@@ -103,7 +103,7 @@ const Search = () => {
         });
     });
 
-    const FailureData = Object.values(APIData).filter((item) => {
+    const FailureData = Object.values(filteredResults).filter((item) => {
         const searchFor = 'false';
         return searchTeamLs.some((newItem) => {
             return (
@@ -150,7 +150,7 @@ const Search = () => {
         }
     };
 
-    const YesData = Object.values(APIData).filter((item) => {
+    const YesData = Object.values(filteredResults).filter((item) => {
         const searchFor = 'true';
         return searchTeamUc.some((newItem) => {
             return (
@@ -162,7 +162,7 @@ const Search = () => {
         });
     });
 
-    const NoData = Object.values(APIData).filter((item) => {
+    const NoData = Object.values(filteredResults).filter((item) => {
         const searchFor = 'false';
         return searchTeamUc.some((newItem) => {
             return (
