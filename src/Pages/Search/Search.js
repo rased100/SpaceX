@@ -13,20 +13,10 @@ const Search = () => {
     const APIData = useSelector(getAllRockets);
     const { launch_success, upcoming, flight_number, launch_date_local, rocket, links, mission_name } = APIData;
     const [filteredResults, setFilteredResults] = useState([]);
-    const [searchInput, setSearchInput] = useState('');
-    // const [searchTeamString, setSearchTeamString] = useState('');
-    // const searchStringText = "launch_success";
-    // const [searchTeam] = useState([searchTeamString]);
+    // const [searchInput, setSearchInput] = useState('');
     const [searchTeam] = useState(["mission_name"]);
     const [searchTeamLs] = useState(["launch_success"]);
     const [searchTeamUc] = useState(["upcoming"]);
-
-
-
-    // console.log('searchTeamString', typeof (searchTeamString));
-    // console.log('APIData', APIData);
-    // console.log('searchInput1', searchInput);
-    // console.log('searchInput2', typeof (searchInput));
 
     useEffect(() => {
         fetch(`https://api.spacexdata.com/v3/launches`)
@@ -35,22 +25,18 @@ const Search = () => {
                 // console.log('fdata', data)
                 setFilteredResults(data);
             });
-
-
-
     }, [])
 
     // search name
     const searchItemsBtn = (searchValue) => {
-        setSearchInput(searchValue)
-        if (searchInput !== '') {
+        if (searchValue !== '') {
             const filteredData = Object.values(APIData).filter((item) => {
                 return searchTeam.some((newItem) => {
                     return (
                         item[newItem]
                             ?.toString()
                             .toLowerCase()
-                            .indexOf(searchInput.toLowerCase()) > -1
+                            .indexOf(searchValue.toLowerCase()) > -1
                     );
                 });
             })
@@ -76,8 +62,7 @@ const Search = () => {
     const lunchDateBtn = (searchValue) => {
         if (searchValue == 4) {
             setFilteredResults(lastFiveYears);
-            // setFilteredResults(Object.values(lastFiveYears));
-            console.log('lastFiveYears', lastFiveYears)
+            // console.log('lastFiveYears', lastFiveYears)
         } else if (searchValue == 3) {
             setFilteredResults(lastYear);
         } else if (searchValue == 2) {
@@ -129,6 +114,9 @@ const Search = () => {
             );
         });
     });
+
+
+    //                 ----------other way---------- 
 
     // const lunchStatusBtnF = (searchValue) => {
     //     // setSearchInput(searchValue)
@@ -185,28 +173,6 @@ const Search = () => {
             );
         });
     });
-
-
-    // const isUpcomingBtnF = (searchValue) => {
-    //     // setSearchInput(searchValue)
-    //     if (searchValue !== '') {
-    //         const filteredData = Object.values(APIData).filter((item) => {
-    //             return searchTeamUc.some((newItem) => {
-    //                 return (
-    //                     item[newItem]
-    //                         ?.toString()
-    //                         .toLowerCase()
-    //                         .indexOf(searchValue.toLowerCase()) > -1
-    //                 );
-    //             });
-    //         })
-    //         // console.log('filterdData', filteredData);
-    //         setFilteredResults(filteredData)
-    //     }
-    //     else if (searchInput == '') {
-    //         setFilteredResults(APIData)
-    //     }
-    // };
 
     // UpComming----------------End
 
