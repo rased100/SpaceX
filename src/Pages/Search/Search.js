@@ -109,6 +109,50 @@ const Search = () => {
         }
     };
 
+    // last 5/1 Years------------------------------------------------------Start
+
+
+    // let today = new Date();
+    // console.log('today', today.toLocaleString());
+
+    // let lastYearStart = new Date(today.getFullYear() - 1, 0, 1);
+    // let lastYearEnd = new Date(today.getFullYear(), 0, 1);
+
+    // console.log('lastYearStart', lastYearStart.toLocaleString());
+    // console.log(lastYearEnd.toLocaleString());
+
+    // ----------------------------------------------
+
+    const lastFiveYears = Object.values(APIData).filter(function (item) {
+        // const yearString = item.launch_year;
+        // const StrinsToNum = parseFloat(yearString);
+        // console.log('snum', StrinsToNum);
+        // const gYear = new Date().getFullYear();
+        // console.log('gYear', gYear);
+        return new Date().getFullYear() - item.launch_year <= 5;
+    });
+
+    const lastYear = Object.values(APIData).filter(function (item) {
+        return new Date().getFullYear() - item.launch_year <= 1;
+    });
+
+
+    const lunchDateBtn = (searchValue) => {
+        if (searchValue == 4) {
+            setFilteredResults(lastFiveYears);
+            // setFilteredResults(Object.values(lastFiveYears));
+            console.log('lastFiveYears', lastFiveYears)
+        } else if (searchValue == 3) {
+            setFilteredResults(lastYear);
+        } else {
+            setFilteredResults(APIData)
+        }
+    }
+
+
+
+    // last 5/1 Years------------------------------------------------------End
+
 
 
     return (
@@ -135,7 +179,7 @@ const Search = () => {
                         <Form.Select
                             className="ms-3"
                             aria-label="Default select example"
-                        // onChange={(e) => lunchDateBtn(e.target.value)}
+                            onChange={(e) => lunchDateBtn(e.target.value)}
                         >
                             <option>Lunch Date</option>
                             <option value="1">Last Week</option>
