@@ -14,9 +14,16 @@ const Search = () => {
     const { launch_success, upcoming, flight_number, launch_date_local, rocket, links, mission_name } = APIData;
     const [filteredResults, setFilteredResults] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [searchTerm] = useState(["mission_name"]);
+    // const [searchTeamString, setSearchTeamString] = useState('');
+    // const searchStringText = "launch_success";
+    // const [searchTeam] = useState([searchTeamString]);
+    const [searchTeam] = useState(["mission_name"]);
+    const [searchTeamLs] = useState(["launch_success"]);
 
-    // console.log('filtered result', filteredResults);
+
+
+    // console.log('searchTeamString', typeof (searchTeamString));
+    // console.log('APIData', APIData);
     // console.log('searchInput1', searchInput);
     // console.log('searchInput2', typeof (searchInput));
 
@@ -32,12 +39,12 @@ const Search = () => {
 
     }, [])
 
-    const searchItems = (searchValue) => {
+    // search name
+    const searchItemsBtn = (searchValue) => {
         setSearchInput(searchValue)
-
         if (searchInput !== '') {
             const filteredData = Object.values(APIData).filter((item) => {
-                return searchTerm.some((newItem) => {
+                return searchTeam.some((newItem) => {
                     return (
                         item[newItem]
                             ?.toString()
@@ -46,13 +53,39 @@ const Search = () => {
                     );
                 });
             })
-            console.log('filterdData', filteredData);
+            // console.log('filterdData', filteredData);
             setFilteredResults(filteredData)
         }
         else {
             setFilteredResults(APIData)
         }
-    }
+    };
+
+
+
+    // lunch status
+    const lunchStatusBtn = (searchValue) => {
+        setSearchInput(searchValue)
+        if (searchInput !== '') {
+            const filteredData = Object.values(APIData).filter((item) => {
+                return searchTeamLs.some((newItem) => {
+                    return (
+                        item[newItem]
+                            ?.toString()
+                            .toLowerCase()
+                            .indexOf(searchInput.toLowerCase()) > -1
+                    );
+                });
+            })
+            // console.log('filterdData', filteredData);
+            setFilteredResults(filteredData)
+        }
+        else {
+            setFilteredResults(APIData)
+        }
+    };
+
+
 
     return (
 
@@ -70,12 +103,16 @@ const Search = () => {
                                 placeholder="Srarch by Rocket Name"
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
-                                onChange={(e) => searchItems(e.target.value)}
+                                onChange={(e) => searchItemsBtn(e.target.value)}
                             />
                         </InputGroup>
 
                         {/* Lunch Date */}
-                        <Form.Select className="ms-3" aria-label="Default select example">
+                        <Form.Select
+                            className="ms-3"
+                            aria-label="Default select example"
+                        // onChange={(e) => lunchDateBtn(e.target.value)}
+                        >
                             <option>Lunch Date</option>
                             <option value="1">Last Week</option>
                             <option value="2">Last Month</option>
@@ -84,14 +121,22 @@ const Search = () => {
                         </Form.Select>
 
                         {/* Lunch Status */}
-                        <Form.Select className="ms-3" aria-label="Default select example">
+                        <Form.Select
+                            className="ms-3"
+                            aria-label="Default select example"
+                            onChange={(e) => lunchStatusBtn(e.target.value)}
+                        >
                             <option>Lunch Status</option>
-                            <option value="1">Success</option>
-                            <option value="2">Failure</option>
+                            <option value='false'>Success</option>
+                            <option value='true'>Failure</option>
                         </Form.Select>
 
                         {/* Is Upcoming */}
-                        <Form.Select className="ms-3" aria-label="Default select example">
+                        <Form.Select
+                            className="ms-3"
+                            aria-label="Default select example"
+                        // onChange={(e) => isUpcomingBtn(e.target.value)}
+                        >
                             <option>Is Upcoming</option>
                             <option value="1">Yes</option>
                             <option value="2">No</option>
