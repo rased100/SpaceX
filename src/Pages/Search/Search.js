@@ -27,8 +27,6 @@ const Search = () => {
             });
     }, []);
 
-
-
     // search name
     const searchItemsBtn = (searchValue) => {
         if (searchValue !== '') {
@@ -51,11 +49,11 @@ const Search = () => {
     };
 
     // last 5/1/month/week-----------------------------------------------------
-    const lastFiveYears = Object.values(filteredResults).filter((item) => {
+    const lastFiveYears = Object.values(APIData).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 5;
     });
 
-    const lastYear = Object.values(filteredResults).filter((item) => {
+    const lastYear = Object.values(APIData).filter((item) => {
         return new Date().getFullYear() - item.launch_year <= 1;
     });
 
@@ -87,12 +85,13 @@ const Search = () => {
             setFilteredResults(SuccessData)
         } else if (searchValue == 'false') {
             setFilteredResults(FailureData)
+            console.log('dataapi', APIData);
         } else {
             setFilteredResults(APIData)
         }
     };
 
-    const SuccessData = Object.values(filteredResults).filter((item) => {
+    const SuccessData = Object.values(APIData).filter((item) => {
         const searchFor = 'true';
         return searchTeamLs.some((newItem) => {
             return (
@@ -104,7 +103,7 @@ const Search = () => {
         });
     });
 
-    const FailureData = Object.values(filteredResults).filter((item) => {
+    const FailureData = Object.values(APIData).filter((item) => {
         const searchFor = 'false';
         return searchTeamLs.some((newItem) => {
             return (
@@ -112,9 +111,12 @@ const Search = () => {
                     ?.toString()
                     .toLowerCase()
                     .indexOf(searchFor.toLowerCase()) > -1
+
             );
+
         });
     });
+    // console.log('dataapi', APIData);
 
 
     // UpComming----------------------------------------------------------
@@ -128,7 +130,7 @@ const Search = () => {
         }
     };
 
-    const YesData = Object.values(filteredResults).filter((item) => {
+    const YesData = Object.values(APIData).filter((item) => {
         const searchFor = 'true';
         return searchTeamUc.some((newItem) => {
             return (
@@ -140,7 +142,7 @@ const Search = () => {
         });
     });
 
-    const NoData = Object.values(filteredResults).filter((item) => {
+    const NoData = Object.values(APIData).filter((item) => {
         const searchFor = 'false';
         return searchTeamUc.some((newItem) => {
             return (
